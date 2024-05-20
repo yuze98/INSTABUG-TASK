@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, ImageBackground, StyleSheet} from 'react-native';
 
-const MovieDetails = ({route}) => {
+const MovieDetails = ({route}: {route: any}) => {
   const {title, description, imageUri} = route.params;
 
   return (
