@@ -105,8 +105,6 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 5,
     padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',

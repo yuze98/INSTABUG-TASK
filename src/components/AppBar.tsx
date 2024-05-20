@@ -1,24 +1,32 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, TouchableOpacity, StyleSheet, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 const AppBar: React.FC = () => {
   const navigation = useNavigation();
-
+  const [canGoBack, setCanGoBack] = useState(navigation.canGoBack());
   const handleBackPress = () => {
     navigation.goBack();
   };
-
+  useEffect(() => {
+    setCanGoBack(navigation.canGoBack());
+  }, [setCanGoBack, navigation]);
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleBackPress} style={styles.button}>
-        <Text style={styles.buttonText}>Back</Text>
-      </TouchableOpacity>
+      {canGoBack ? (
+        <TouchableOpacity onPress={handleBackPress} style={styles.button}>
+          <Text style={styles.buttonText}>Back</Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity onPress={() => {}} style={styles.button}>
+          <Text style={styles.buttonText}>All</Text>
+        </TouchableOpacity>
+      )}
+
       <TouchableOpacity onPress={() => {}} style={styles.button}>
-        <Text style={styles.buttonText}>Button 1</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => {}} style={styles.button}>
-        <Text style={styles.buttonText}>Button 2</Text>
+        <Text style={styles.buttonText}>
+          {canGoBack ? 'Watch Trailer' : 'Latest'}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -33,6 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#060606',
+    opacity: 0.8,
     paddingVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 20,
@@ -43,7 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: 'white',
+    color: '#FFFFFF',
   },
 });
 
