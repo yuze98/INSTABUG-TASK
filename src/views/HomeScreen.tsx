@@ -81,16 +81,26 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <FlatList
-      data={DATA}
-      renderItem={({item}) => renderItem(item, navigation)}
-      keyExtractor={item => item.id.toString()}
-      numColumns={2}
-    />
+    <View style={styles.container}>
+      <Text style={[styles.title, styles.header]}>Your Movie List</Text>
+      <FlatList
+        data={DATA}
+        renderItem={({item}) => renderItem(item, navigation)}
+        keyExtractor={item => item.id.toString()}
+        numColumns={2}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 100,
+  },
+  header: {
+    fontSize: 24,
+    color: '#bbbbbb',
+  },
   item: {
     flex: 1,
     margin: 5,
@@ -112,7 +122,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     textAlign: 'center',
-    color: 'white',
+    color: '#cccccc',
   },
 });
 

@@ -11,8 +11,14 @@ const AppBar: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
-        <Text style={styles.backButtonText}>Back</Text>
+      <TouchableOpacity onPress={handleBackPress} style={styles.button}>
+        <Text style={styles.buttonText}>Back</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {}} style={styles.button}>
+        <Text style={styles.buttonText}>Button 1</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {}} style={styles.button}>
+        <Text style={styles.buttonText}>Button 2</Text>
       </TouchableOpacity>
     </View>
   );
@@ -21,18 +27,23 @@ const AppBar: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)', // Transparent black color
-    paddingVertical: 30,
-    paddingHorizontal: 20,
+    top: 50,
+    left: 40,
+    right: 40,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#060606',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderRadius: 20,
   },
-  backButton: {
-    marginRight: 10,
+  button: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  backButtonText: {
-    color: 'black',
+  buttonText: {
+    color: 'white',
   },
 });
 
