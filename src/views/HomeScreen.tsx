@@ -22,9 +22,7 @@ const renderItem = (item: Movie, navigation: any) => {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate('MovieDetails', {
-            title: item.title,
-            description: item.description,
-            imageUri: item.imageUri,
+            item: item,
           })
         }>
         <Image source={{uri: item.imageUri}} style={styles.image} />
