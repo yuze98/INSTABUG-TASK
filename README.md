@@ -50,7 +50,7 @@ This is one way to run your app — you can also run it directly from within And
 You've successfully ran the Cinema React Native App. :partying_face:
 
 
-### ps:
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 
