@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {View, Text, ImageBackground, StyleSheet, Animated} from 'react-native';
+import {View, Text, ImageBackground, Animated} from 'react-native';
+import {MovieDetailsStyles} from '../styles/MovieDetailsStyles';
 
 const MovieDetails = ({route}: {route: any}) => {
   const {item} = route.params;
@@ -49,56 +50,32 @@ const MovieDetails = ({route}: {route: any}) => {
     <View
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      style={styles.container}>
-      <ImageBackground source={{uri: imageUri}} style={styles.imageBackground}>
-        <Animated.View style={[styles.overlay, {opacity: fadeAnim}]}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.description}>{description}</Text>
-          <View style={styles.details}>
-            <Text style={styles.detailItem}>Release Date: {release_date}</Text>
-            <Text style={styles.detailItem}>Popularity: {popularity}</Text>
-            <Text style={styles.detailItem}>Vote Average: {vote_average}</Text>
-            <Text style={styles.detailItem}>Vote Count: {vote_count}</Text>
+      style={MovieDetailsStyles.container}>
+      <ImageBackground
+        source={{uri: imageUri}}
+        style={MovieDetailsStyles.imageBackground}>
+        <Animated.View
+          style={[MovieDetailsStyles.overlay, {opacity: fadeAnim}]}>
+          <Text style={MovieDetailsStyles.title}>{title}</Text>
+          <Text style={MovieDetailsStyles.description}>{description}</Text>
+          <View style={MovieDetailsStyles.details}>
+            <Text style={MovieDetailsStyles.detailItem}>
+              Release Date: {release_date}
+            </Text>
+            <Text style={MovieDetailsStyles.detailItem}>
+              Popularity: {popularity}
+            </Text>
+            <Text style={MovieDetailsStyles.detailItem}>
+              Vote Average: {vote_average}
+            </Text>
+            <Text style={MovieDetailsStyles.detailItem}>
+              Vote Count: {vote_count}
+            </Text>
           </View>
         </Animated.View>
       </ImageBackground>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  imageBackground: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-  },
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)', // semi-transparent overlay
-    padding: 20,
-    justifyContent: 'flex-end', // align content at the bottom
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
-    marginBottom: 10,
-  },
-  description: {
-    fontSize: 16,
-    color: 'white',
-    marginBottom: '10%',
-  },
-  details: {
-    marginTop: 10,
-  },
-  detailItem: {
-    fontSize: 14,
-    color: 'white',
-  },
-});
 
 export default MovieDetails;
