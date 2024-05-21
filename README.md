@@ -1,8 +1,9 @@
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Brief
+![instabug-logo](https://github.com/yuze98/INSTABUG-TASK/assets/65419885/6c0c49d9-dbfd-4b9c-9309-71ea0f1e0ce3)
 
-## Instabug
+## Instabug 
 - This app is a task provided by [Instabug](https://www.instabug.com/) which is a technology company that provides software tools for mobile app developers to facilitate bug reporting, performance monitoring, and user feedback collection. Their solutions are designed to enhance the quality and reliability of mobile applications by enabling developers to identify and fix issues more efficiently.
 
 ## Task
