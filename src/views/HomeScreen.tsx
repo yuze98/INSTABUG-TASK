@@ -1,5 +1,5 @@
 // HomeScreen.js
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   View,
@@ -9,13 +9,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import MovieService from '../services/MovieService';
+import {Movie} from '../utils/types';
 
-type item = {
-  id: number;
-  title: string;
-  description: string;
-  imageUri: string;
-};
 const DATA = [
   {
     id: 1,
@@ -59,7 +55,7 @@ const DATA = [
   },
 ];
 
-const renderItem = (item: item, navigation: any) => {
+const renderItem = (item: Movie, navigation: any) => {
   return (
     <View style={styles.item}>
       <TouchableOpacity
@@ -79,12 +75,27 @@ const renderItem = (item: item, navigation: any) => {
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    const fetchMovieList = async () => {
+      MovieService.getMovieListAxios()
+        .then(res => {
+          setMovies(res.movies);
+        })
+        .catch(err => {
+          setError(err);
+          console.error('An error occured during fetching movie list', err);
+        });
+    };
+    fetchMovieList();
+  }, []);
   return (
     <View style={styles.container}>
       <Text style={[styles.title, styles.header]}>Your Movie List</Text>
       <FlatList
-        data={DATA}
+        data={movies}
         renderItem={({item}) => renderItem(item, navigation)}
         keyExtractor={item => item.id.toString()}
         numColumns={2}
