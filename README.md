@@ -2,8 +2,7 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Brief
 
-## Instabug 
-<img src="https://github.com/yuze98/INSTABUG-TASK/assets/65419885/23d65a06-dece-4fd3-992f-4285d9786ac2" alt="image" width="100" height="auto">
+## Instabug  <img src="https://github.com/yuze98/INSTABUG-TASK/assets/65419885/23d65a06-dece-4fd3-992f-4285d9786ac2" alt="image" width="100" height="auto">
 - This app is a task provided by [Instabug](https://www.instabug.com/) which is a technology company that provides software tools for mobile app developers to facilitate bug reporting, performance monitoring, and user feedback collection. Their solutions are designed to enhance the quality and reliability of mobile applications by enabling developers to identify and fix issues more efficiently.
 
 ## Task
