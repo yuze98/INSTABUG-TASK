@@ -1,4 +1,3 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
  <h1>INSTABUG TASK</h1><img src="https://github.com/yuze98/INSTABUG-TASK/assets/65419885/23d65a06-dece-4fd3-992f-4285d9786ac2" alt="image" width="100" height="auto">
  
 # Brief
@@ -49,4 +48,9 @@ This is one way to run your app — you can also run it directly from within And
 ## Congratulations! :tada:
 
 You've successfully ran the Cinema React Native App. :partying_face:
+
+
+### ps:
+This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+
 
