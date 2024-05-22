@@ -19,13 +19,13 @@ const AppBar: React.FC = () => {
         </TouchableOpacity>
       ) : (
         <TouchableOpacity onPress={() => {}} style={styles.button}>
-          <Text style={styles.buttonText}>All</Text>
+          <Text style={styles.buttonText}>Movies</Text>
         </TouchableOpacity>
       )}
 
       <TouchableOpacity onPress={() => {}} style={styles.button}>
         <Text style={styles.buttonText}>
-          {canGoBack ? 'Watch Trailer' : 'Latest'}
+          {canGoBack ? 'Watch Trailer' : 'Profile'}
         </Text>
       </TouchableOpacity>
     </View>

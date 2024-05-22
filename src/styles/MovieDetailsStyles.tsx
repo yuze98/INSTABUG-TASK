@@ -6,9 +6,10 @@ export const MovieDetailsStyles = StyleSheet.create({
   },
   imageBackground: {
     flex: 1,
-    height: '80%',
+    height: '85%',
     width: '100%',
     justifyContent: 'center',
+    position: 'absolute',
   },
   overlay: {
     flex: 1,
@@ -17,7 +18,7 @@ export const MovieDetailsStyles = StyleSheet.create({
     justifyContent: 'flex-end', // align content at the bottom
   },
   title: {
-    fontSize: 24,
+    fontSize: 36,
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 10,
@@ -25,13 +26,29 @@ export const MovieDetailsStyles = StyleSheet.create({
   description: {
     fontSize: 16,
     color: 'white',
-    marginBottom: '10%',
+    marginBottom: '5%',
   },
-  details: {
-    marginTop: 10,
-  },
+
   detailItem: {
     fontSize: 14,
     color: 'white',
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  watchNowButton: {
+    backgroundColor: '#4444FFaa',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
