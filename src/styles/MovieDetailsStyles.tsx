@@ -6,7 +6,8 @@ export const MovieDetailsStyles = StyleSheet.create({
   },
   imageBackground: {
     flex: 1,
-    resizeMode: 'cover',
+    height: '80%',
+    width: '100%',
     justifyContent: 'center',
   },
   overlay: {
