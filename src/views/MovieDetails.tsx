@@ -24,7 +24,6 @@ const MovieDetails = ({route}: {route: any}) => {
   const handleTouchEnd = (e: {nativeEvent: {pageY: number}}) => {
     const deltaY = touchY - e.nativeEvent.pageY;
     if (deltaY < 20) {
-      console.log('Swiped up');
       Animated.timing(
         fadeAnim, // The value to drive
         {
@@ -34,7 +33,6 @@ const MovieDetails = ({route}: {route: any}) => {
         },
       ).start(); // Start the animation
     } else if (deltaY > -20) {
-      console.log('Swiped down');
       Animated.timing(
         fadeAnim, // The value to drive
         {
