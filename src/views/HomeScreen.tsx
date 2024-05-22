@@ -21,7 +21,7 @@ const HomeScreen = () => {
 
       if (state.isConnected) {
         try {
-          const response = await MovieService.getMovieListAxios();
+          const response = await MovieService.getMovieListNative();
           setMovies(response.movies);
           await AsyncStorage.setItem(
             STORAGE_KEY,
