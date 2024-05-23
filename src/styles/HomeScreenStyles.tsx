@@ -25,7 +25,7 @@ export const HomeScreenStyles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 15,
     textAlign: 'center',
     color: '#cccccc',
   },
