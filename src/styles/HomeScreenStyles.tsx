@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 export const HomeScreenStyles = StyleSheet.create({
   container: {
     marginTop: 100,
+    marginBottom: 100,
   },
   header: {
     fontSize: 24,
@@ -28,6 +29,7 @@ export const HomeScreenStyles = StyleSheet.create({
     marginBottom: 15,
     textAlign: 'center',
     color: '#cccccc',
+    marginTop: 15,
   },
   error: {
     color: 'red',

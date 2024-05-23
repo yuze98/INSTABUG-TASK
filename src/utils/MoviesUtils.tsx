@@ -13,6 +13,7 @@ const transformMovieList = (apiMovieList: MovieApi[]): Movie[] => {
     title: apiMovie.title,
     vote_average: apiMovie.vote_average,
     vote_count: apiMovie.vote_count,
+    backdrop_path: IMG_API_URL + apiMovie.backdrop_path,
   }));
 };
 

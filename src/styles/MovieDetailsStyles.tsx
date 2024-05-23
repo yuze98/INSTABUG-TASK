@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 export const MovieDetailsStyles = StyleSheet.create({
   container: {
     flex: 1,
+    marginBottom: 10,
   },
   imageBackground: {
     flex: 1,
@@ -22,6 +23,9 @@ export const MovieDetailsStyles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 10,
+  },
+  titleSub: {
+    fontSize: 24,
   },
   description: {
     fontSize: 16,

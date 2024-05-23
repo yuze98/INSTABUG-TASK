@@ -5,6 +5,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   Linking,
+  ScrollView,
 } from 'react-native';
 import {MovieDetailsStyles} from '../styles/MovieDetailsStyles';
 
@@ -13,11 +14,12 @@ const MovieDetails = ({route}: {route: any}) => {
   const {
     title,
     description,
-    imageUri,
     vote_average,
     vote_count,
     release_date,
     popularity,
+    backdrop_path,
+    imageUri,
   } = item;
 
   const handleWatchNowPress = () => {
@@ -27,12 +29,24 @@ const MovieDetails = ({route}: {route: any}) => {
   return (
     <View style={MovieDetailsStyles.container}>
       <ImageBackground
-        source={{uri: imageUri}}
+        source={{uri: backdrop_path ?? imageUri}} // if the backdrop is not available then use the poster
         style={MovieDetailsStyles.imageBackground}
       />
 
       <View style={MovieDetailsStyles.overlay}>
         <Text style={MovieDetailsStyles.title}>{title}</Text>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Text style={[MovieDetailsStyles.title, MovieDetailsStyles.titleSub]}>
+            {release_date.split('-')[0]}
+          </Text>
+          <View>
+            <Text
+              style={[
+                MovieDetailsStyles.title,
+                MovieDetailsStyles.titleSub,
+              ]}>{`${vote_average.toPrecision(2)}`}</Text>
+          </View>
+        </View>
         <Text style={MovieDetailsStyles.description}>
           {description === '' ? 'No Description' : description}
         </Text>
