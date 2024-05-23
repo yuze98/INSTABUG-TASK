@@ -5,7 +5,6 @@ import {
   ImageBackground,
   TouchableOpacity,
   Linking,
-  ScrollView,
 } from 'react-native';
 import {MovieDetailsStyles} from '../styles/MovieDetailsStyles';
 
