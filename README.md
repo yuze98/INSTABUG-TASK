@@ -3,18 +3,24 @@
 # Brief
 
 ## Instabug 
-- This app is a task provided by [Instabug](https://www.instabug.com/) which is a technology company that provides software tools for mobile app developers to facilitate bug reporting, performance monitoring, and user feedback collection. Their solutions are designed to enhance the quality and reliability of mobile applications by enabling developers to identify and fix issues more efficiently.
+[Instabug](https://www.instabug.com/) is a technology company that provides software tools for mobile app developers to facilitate bug reporting, performance monitoring, and user feedback collection. Their solutions are designed to enhance the quality and reliability of mobile applications by enabling developers to identify and fix issues more efficiently.
 
 ## Task
-- Build a mobile app using (React Native ✔️) or Flutter that displays a list of movies fetched from an API, implementing the network call functions as native modules for React Native or platform-specific code for Flutter, with the calls initiated from the respective framework.
+Build a mobile app using **React Native** ✔️ or **Flutter** that displays a list of movies fetched from an API. Implement the network call functions as native modules for React Native or platform-specific code for Flutter, with the calls initiated from the respective framework.
+
+# Features 📱
+- Scroll through a list of movies.
+- Press on a movie to show its details.
+
+# Network API Implementation 🌐
+I implemented the network API call functions with native code in **Kotlin** for Android and **Swift** for iOS.
 
 # Getting Started
 
 ## Step 1: Start the Metro Server
-
 First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+To start Metro, run the following command from the root of your React Native project:
 
 ```bash
 # using npm
