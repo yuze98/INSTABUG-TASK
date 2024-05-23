@@ -7,6 +7,7 @@ import {
   Linking,
 } from 'react-native';
 import {MovieDetailsStyles} from '../styles/MovieDetailsStyles';
+import {BlurView} from '@react-native-community/blur';
 
 const MovieDetails = ({route}: {route: any}) => {
   const {item} = route.params;
@@ -33,36 +34,45 @@ const MovieDetails = ({route}: {route: any}) => {
       />
 
       <View style={MovieDetailsStyles.overlay}>
-        <Text style={MovieDetailsStyles.title}>{title}</Text>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Text style={[MovieDetailsStyles.title, MovieDetailsStyles.titleSub]}>
-            {release_date.split('-')[0]}
-          </Text>
-          <View>
-            <Text
-              style={[
-                MovieDetailsStyles.title,
-                MovieDetailsStyles.titleSub,
-              ]}>{`${vote_average.toPrecision(2)}`}</Text>
+        <BlurView
+          blurType="dark" // Specify the blur type
+          blurAmount={1} // Adjust blur intensity as needed
+          blurRadius={20}>
+          <View style={MovieDetailsStyles.pad20}>
+            <Text style={MovieDetailsStyles.title}>{title}</Text>
+            <View style={MovieDetailsStyles.titleSubContainer}>
+              <Text
+                style={[MovieDetailsStyles.title, MovieDetailsStyles.titleSub]}>
+                {release_date.split('-')[0]}
+              </Text>
+              <View>
+                <Text
+                  style={[
+                    MovieDetailsStyles.title,
+                    MovieDetailsStyles.titleSub,
+                    MovieDetailsStyles.rate,
+                  ]}>{`${vote_average.toPrecision(2)}`}</Text>
+              </View>
+            </View>
+            <Text style={MovieDetailsStyles.description}>
+              {description === '' ? 'No Description' : description}
+            </Text>
+            <View>
+              <Text style={MovieDetailsStyles.detailItem}>
+                Release Date: {release_date}
+              </Text>
+              <Text style={MovieDetailsStyles.detailItem}>
+                Popularity: {parseInt(popularity, 10)}
+              </Text>
+              <Text style={MovieDetailsStyles.detailItem}>
+                Ratinge: {vote_average.toPrecision(2)}
+              </Text>
+              <Text style={MovieDetailsStyles.detailItem}>
+                Count: {vote_count}
+              </Text>
+            </View>
           </View>
-        </View>
-        <Text style={MovieDetailsStyles.description}>
-          {description === '' ? 'No Description' : description}
-        </Text>
-        <View>
-          <Text style={MovieDetailsStyles.detailItem}>
-            Release Date: {release_date}
-          </Text>
-          <Text style={MovieDetailsStyles.detailItem}>
-            Popularity: {popularity}
-          </Text>
-          <Text style={MovieDetailsStyles.detailItem}>
-            Vote Average: {vote_average}
-          </Text>
-          <Text style={MovieDetailsStyles.detailItem}>
-            Vote Count: {vote_count}
-          </Text>
-        </View>
+        </BlurView>
         <View style={MovieDetailsStyles.buttonContainer}>
           <TouchableOpacity
             style={MovieDetailsStyles.watchNowButton}

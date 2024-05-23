@@ -12,20 +12,29 @@ export const MovieDetailsStyles = StyleSheet.create({
     justifyContent: 'center',
     position: 'absolute',
   },
+  rate: {
+    color: 'gold',
+  },
   overlay: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.5)', // semi-transparent overlay
-    padding: 20,
     justifyContent: 'flex-end', // align content at the bottom
   },
+  pad20: {padding: 20},
+
   title: {
     fontSize: 36,
     fontWeight: 'bold',
     color: 'white',
     marginBottom: 10,
   },
+  titleSubContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   titleSub: {
     fontSize: 24,
+    opacity: 0.7,
   },
   description: {
     fontSize: 16,
