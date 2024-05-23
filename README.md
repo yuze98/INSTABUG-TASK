@@ -71,7 +71,7 @@ This is one way to run your app — you can also run it directly from within And
 
 ## Congratulations! :tada:
 
-You've successfully ran the Movie React Native App. :partying_face:
+You've successfully ran the Movies React Native App. :partying_face:
 
 
 
