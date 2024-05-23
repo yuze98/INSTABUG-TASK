@@ -27,7 +27,25 @@ To start Metro, run the following command from the root of your React Native pro
 npm start
 ```
 
-## Step 2: Start your Application
+## Step 2: Install Dependencies
+
+Before running your application on Android or iOS, you need to install dependencies.
+
+### For Android
+
+- navigate to the root of your React Native project and run:
+
+```bash
+# using npm
+npm install
+```
+
+### For iOS
+
+- navigate to the ios directory of your React Native project and run:
+
+
+## Step 3: Start your Application
 
 Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
 
