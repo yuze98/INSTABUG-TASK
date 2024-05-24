@@ -18,7 +18,6 @@ const MovieService = {
       const response = await MoviesApi.getMoviesListNative(
         `${API_URL}?api_key=${API_KEY}`,
       );
-      console.log(response);
       const responseData = JSON.parse(response);
       console.log('fetched successfully from native function with');
       return {
