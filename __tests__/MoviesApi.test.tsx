@@ -18,6 +18,7 @@ jest.mock('react-native', () => ({
   },
 }));
 
+// Mocking MovieService native bridging function
 describe('MoviesApi', () => {
   afterEach(() => {
     fetchMock.restore();
@@ -61,6 +62,7 @@ describe('MoviesApi', () => {
       JSON.stringify(movieMockResponse),
     );
 
+    // Test the function for the mocked converted result and the main response
     const result = await MovieService.getMovieListNative();
     expect(result).toEqual(movieMockConverted);
   });
@@ -69,7 +71,7 @@ describe('MoviesApi', () => {
     const error = new Error('Failed to fetch');
     // Mock the native module method to return a rejected promise with the mocked error
     NativeModules.MoviesApi.getMoviesListNative.mockRejectedValue(error);
-
+    // Checking for the errors for a rejected request
     await expect(MovieService.getMovieListNative()).rejects.toThrowError(error);
   });
 });
