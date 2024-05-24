@@ -15,6 +15,13 @@ Build a mobile app using **React Native** ✔️ or **Flutter** that displays a 
 # Network API Implementation 🌐
 I implemented the network API call functions with native code in **Kotlin** for Android and **Swift** for iOS.
 
+# Screenshots for IOS and Android
+ <h1>INSTABUG TASK</h1><img src="https://github.com/yuze98/INSTABUG-TASK/blob/main/screenshots/and1.png" alt="image" width="200" height="auto">
+ <h1>INSTABUG TASK</h1><img src="https://github.com/yuze98/INSTABUG-TASK/blob/main/screenshots/and2.png" alt="image" width="200" height="auto">
+ 
+ <h1>INSTABUG TASK</h1><img src="https://github.com/yuze98/INSTABUG-TASK/blob/main/screenshots/ios1.png" alt="image" width="200" height="auto">
+ <h1>INSTABUG TASK</h1><img src="https://github.com/yuze98/INSTABUG-TASK/blob/main/screenshots/ios2.png" alt="image" width="200" height="auto">
+
 # Getting Started
 
 ## Step 1: Start the Metro Server
