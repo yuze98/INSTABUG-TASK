@@ -7,7 +7,6 @@ import {
   Linking,
 } from 'react-native';
 import {MovieDetailsStyles} from '../styles/MovieDetailsStyles';
-import {BlurView} from '@react-native-community/blur';
 
 /**
  * Description:
@@ -46,10 +45,7 @@ const MovieDetails = ({route}: {route: any}) => {
       />
 
       <View style={MovieDetailsStyles.overlay}>
-        <BlurView
-          blurType="dark" // Specify the blur type
-          blurAmount={1} // Adjust blur intensity as needed
-          blurRadius={20}>
+        <View>
           <View style={MovieDetailsStyles.pad20}>
             <Text style={MovieDetailsStyles.title}>{title}</Text>
             <View style={MovieDetailsStyles.titleSubContainer}>
@@ -84,7 +80,7 @@ const MovieDetails = ({route}: {route: any}) => {
               </Text>
             </View>
           </View>
-        </BlurView>
+        </View>
         <View style={MovieDetailsStyles.buttonContainer}>
           <TouchableOpacity
             style={MovieDetailsStyles.watchNowButton}
