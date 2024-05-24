@@ -1,43 +1,31 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {Movie} from '../utils/types';
 import React from 'react';
-
+import {PosterStyles} from '../styles/PosterStyles';
+/**
+ * Description:
+ * Poster component represents a customizable movie poster with the title of the movie.
+ * It displays an image of the movie poster along with the title.
+ * Tapping on the poster navigates to the movie details screen.
+ *
+ * Component:
+ * @param {Movie} item - The movie object containing information like title and image URI.
+ * @param {any} navigation - Navigation object for navigating to the movie details screen.
+ * @returns {JSX.Element} Poster component.
+ */
 const Poster = (item: Movie, navigation: any) => {
   return (
-    <View style={styles.item}>
+    <View style={PosterStyles.item}>
       <TouchableOpacity
         onPress={() =>
           navigation.navigate('MovieDetails', {
             item: item,
           })
         }>
-        <Image source={{uri: item.imageUri}} style={styles.image} />
+        <Image source={{uri: item.imageUri}} style={PosterStyles.image} />
       </TouchableOpacity>
-      <Text style={styles.title}>{item.title}</Text>
+      <Text style={PosterStyles.title}>{item.title}</Text>
     </View>
   );
 };
-const styles = StyleSheet.create({
-  item: {
-    flex: 1,
-    margin: 5,
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    width: 175,
-    height: 250,
-    marginBottom: 10,
-    borderRadius: 10,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    textAlign: 'center',
-    color: '#cccccc',
-  },
-});
 export default Poster;
