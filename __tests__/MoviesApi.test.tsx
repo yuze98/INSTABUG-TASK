@@ -41,22 +41,26 @@ describe('MoviesApi', () => {
       vote_count: 1000,
     },
   ];
+
   const movieMockResponse = {
     page: 1,
     results: movieMock,
     total_pages: 3000,
     total_results: 1200,
   };
+
   const movieMockConverted = {
     movies: transformMovieList(movieMock),
     currentPage: movieMockResponse.page,
     totalPages: movieMockResponse.total_pages,
   };
+
   it('should resolve with response data when request is successful', async () => {
     // Mock the native module method to return a resolved promise with the mocked response data
     NativeModules.MoviesApi.getMoviesListNative.mockResolvedValue(
       JSON.stringify(movieMockResponse),
     );
+
     const result = await MovieService.getMovieListNative();
     expect(result).toEqual(movieMockConverted);
   });
