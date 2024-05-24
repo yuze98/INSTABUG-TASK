@@ -69,7 +69,7 @@ If everything is set up _correctly_, you should see the Cinema app running in yo
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-## Running Unit Tests for MovieService Native API Calls
+## Running Unit Tests for MovieService Native API Calls 🧪
 This guide explains how to run the unit tests for the `MovieService` using Jest.
 
 ### Setup
