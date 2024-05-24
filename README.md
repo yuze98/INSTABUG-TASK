@@ -69,6 +69,45 @@ If everything is set up _correctly_, you should see the Cinema app running in yo
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
+## Running Unit Tests for MovieService Native API Calls
+This guide explains how to run the unit tests for the `MovieService` using Jest.
+
+### Setup
+1- Ensure Dependencies are Installed: Make sure all project dependencies are installed by running:
+
+```bash
+npm install
+```
+
+2- Navigate to the Test Directory: If not already there, navigate to the test directory:
+
+```bash
+cd __tests__
+```
+## Run the Test
+Run the Jest test runner for the specific test file:
+
+```bash
+npx jest MoviesApi.test.tsx
+```
+## Understanding the Tests
+
+### MoviesApi Test Suite
+
+#### The MoviesApi test suite contains two main tests:
+
+- Successful Data Fetch: This test verifies that the getMovieListNative function resolves with the expected data when the request is successful.
+
+- Failed Data Fetch: This test ensures that the getMovieListNative function correctly throws an error when the request fails.
+
+## Test Structure
+
+- Mocking Dependencies: The tests mock external dependencies such as NativeModules and react-native-config to isolate the functionality being tested.
+ 
+- Mock Data: Sample movie data is used to simulate API responses.
+ 
+- Assertions: The tests use expect and toEqual statements to verify that the results match the expected values.
+
 ## Congratulations! :tada:
 
 You've successfully ran the Movies React Native App. :partying_face:
