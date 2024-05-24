@@ -8,6 +8,7 @@ export type Movie = {
   title: string;
   vote_average: number;
   vote_count: number;
+  backdrop_path: string;
 };
 export type MovieApi = {
   adult: boolean;

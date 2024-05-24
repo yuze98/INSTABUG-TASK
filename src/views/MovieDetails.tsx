@@ -1,104 +1,100 @@
-import React, {useState} from 'react';
-import {View, Text, ImageBackground, StyleSheet, Animated} from 'react-native';
+import React from 'react';
+import {
+  View,
+  Text,
+  ImageBackground,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
+import {MovieDetailsStyles} from '../styles/MovieDetailsStyles';
+import {BlurView} from '@react-native-community/blur';
+
+/**
+ * Description:
+ * MovieDetails component displays detailed information about a specific movie.
+ * It includes the movie title, description, release date, rating, popularity, and an option to watch the movie.
+ *
+ * Screen:
+ * @param {Object} route - Navigation route containing the movie details.
+ * @returns {JSX.Element} MovieDetails component.
+ */
 
 const MovieDetails = ({route}: {route: any}) => {
   const {item} = route.params;
   const {
     title,
     description,
-    imageUri,
     vote_average,
     vote_count,
     release_date,
     popularity,
+    backdrop_path,
+    imageUri,
   } = item;
-  const [touchY, setTouchY] = useState(0);
 
-  const fadeAnim = useState(new Animated.Value(1))[0];
-
-  const handleTouchStart = (e: {nativeEvent: {pageY: number}}) => {
-    setTouchY(e.nativeEvent.pageY);
-  };
-
-  const handleTouchEnd = (e: {nativeEvent: {pageY: number}}) => {
-    const deltaY = touchY - e.nativeEvent.pageY;
-    if (deltaY < 20) {
-      console.log('Swiped up');
-      Animated.timing(
-        fadeAnim, // The value to drive
-        {
-          toValue: 0, // Target value
-          duration: 500, // Duration of the animation
-          useNativeDriver: true, // Use the native driver for performance
-        },
-      ).start(); // Start the animation
-    } else if (deltaY > -20) {
-      console.log('Swiped down');
-      Animated.timing(
-        fadeAnim, // The value to drive
-        {
-          toValue: 1, // Target value
-          duration: 500, // Duration of the animation
-          useNativeDriver: true, // Use the native driver for performance
-        },
-      ).start(); // Start the animation
-    }
+  // redirects to the netflix website and could be enhanced to redirect
+  // to the movie if there was a link provided
+  const handleWatchNowPress = () => {
+    Linking.openURL('https://www.netflix.com'); // Open Netflix website
   };
 
   return (
-    <View
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      style={styles.container}>
-      <ImageBackground source={{uri: imageUri}} style={styles.imageBackground}>
-        <Animated.View style={[styles.overlay, {opacity: fadeAnim}]}>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.description}>{description}</Text>
-          <View style={styles.details}>
-            <Text style={styles.detailItem}>Release Date: {release_date}</Text>
-            <Text style={styles.detailItem}>Popularity: {popularity}</Text>
-            <Text style={styles.detailItem}>Vote Average: {vote_average}</Text>
-            <Text style={styles.detailItem}>Vote Count: {vote_count}</Text>
+    <View style={MovieDetailsStyles.container}>
+      <ImageBackground
+        source={{uri: backdrop_path ?? imageUri}} // if the backdrop is not available then use the poster
+        style={MovieDetailsStyles.imageBackground}
+      />
+
+      <View style={MovieDetailsStyles.overlay}>
+        <BlurView
+          blurType="dark" // Specify the blur type
+          blurAmount={1} // Adjust blur intensity as needed
+          blurRadius={20}>
+          <View style={MovieDetailsStyles.pad20}>
+            <Text style={MovieDetailsStyles.title}>{title}</Text>
+            <View style={MovieDetailsStyles.titleSubContainer}>
+              <Text
+                style={[MovieDetailsStyles.title, MovieDetailsStyles.titleSub]}>
+                {release_date.split('-')[0]}
+              </Text>
+              <View>
+                <Text
+                  style={[
+                    MovieDetailsStyles.title,
+                    MovieDetailsStyles.titleSub,
+                    MovieDetailsStyles.rate,
+                  ]}>{`${vote_average.toPrecision(2)}`}</Text>
+              </View>
+            </View>
+            <Text style={MovieDetailsStyles.description}>
+              {description === '' ? 'No Description' : description}
+            </Text>
+            <View>
+              <Text style={MovieDetailsStyles.detailItem}>
+                Release Date: {release_date}
+              </Text>
+              <Text style={MovieDetailsStyles.detailItem}>
+                Popularity: {parseInt(popularity, 10)}
+              </Text>
+              <Text style={MovieDetailsStyles.detailItem}>
+                Ratinge: {vote_average.toPrecision(2)}
+              </Text>
+              <Text style={MovieDetailsStyles.detailItem}>
+                Count: {vote_count}
+              </Text>
+            </View>
           </View>
-        </Animated.View>
-      </ImageBackground>
+        </BlurView>
+        <View style={MovieDetailsStyles.buttonContainer}>
+          <TouchableOpacity
+            style={MovieDetailsStyles.watchNowButton}
+            onPress={handleWatchNowPress}>
+            <Text style={MovieDetailsStyles.buttonText}>Watch Now</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  imageBackground: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-  },
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)', // semi-transparent overlay
-    padding: 20,
-    justifyContent: 'flex-end', // align content at the bottom
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
-    marginBottom: 10,
-  },
-  description: {
-    fontSize: 16,
-    color: 'white',
-    marginBottom: '10%',
-  },
-  details: {
-    marginTop: 10,
-  },
-  detailItem: {
-    fontSize: 14,
-    color: 'white',
-  },
-});
 
 export default MovieDetails;

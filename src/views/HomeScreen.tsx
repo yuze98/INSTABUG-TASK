@@ -1,52 +1,39 @@
 import React, {useEffect, useState} from 'react';
-import {
-  FlatList,
-  View,
-  StyleSheet,
-  Image,
-  Text,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import {FlatList, View, Text, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import MovieService from '../services/MovieService';
 import {Movie} from '../utils/types';
+import Poster from '../components/Poster';
+import {HomeScreenStyles} from '../styles/HomeScreenStyles';
 
-const STORAGE_KEY = 'MOVIE_LIST';
-
-const renderItem = (item: Movie, navigation: any) => {
-  return (
-    <View style={styles.item}>
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('MovieDetails', {
-            item: item,
-          })
-        }>
-        <Image source={{uri: item.imageUri}} style={styles.image} />
-      </TouchableOpacity>
-      <Text style={styles.title}>{item.title}</Text>
-    </View>
-  );
-};
-
+/**
+ * Description:
+ * HomeScreen component represents the main screen of the Movie app, displaying a list of movies.
+ * It fetches the movie list from the server Natively using Kotlin and Swift for
+ * both IOS and Android and stores it locally for offline use.
+ *
+ * Screen:
+ * @returns {JSX.Element} HomeScreen component.
+ */
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [movies, setMovies] = useState<Movie[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // Calling the fetching module and sets its state
     const fetchMovieList = async () => {
       const state = await NetInfo.fetch();
-
+      // check if the there is an internet connection
       if (state.isConnected) {
         try {
-          const response = await MovieService.getMovieListAxios();
+          const response = await MovieService.getMovieListNative();
+          // sets the response data in both the state and the async storage for future offline use
           setMovies(response.movies);
           await AsyncStorage.setItem(
-            STORAGE_KEY,
+            'MOVIE_LIST',
             JSON.stringify(response.movies),
           );
         } catch (err) {
@@ -55,7 +42,9 @@ const HomeScreen = () => {
         }
       } else {
         Alert.alert('No Internet Connection', 'Displaying stored movies');
-        const storedMovies = await AsyncStorage.getItem(STORAGE_KEY);
+        // if there were no internet connection then it just retrieves the data from
+        // the async storage and adds it to the state if the data exists
+        const storedMovies = await AsyncStorage.getItem('MOVIE_LIST');
         if (storedMovies) {
           setMovies(JSON.parse(storedMovies));
         } else {
@@ -67,14 +56,16 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={[styles.title, styles.header]}>Your Movie List</Text>
+    <View style={HomeScreenStyles.container}>
+      <Text style={[HomeScreenStyles.title, HomeScreenStyles.header]}>
+        Your Movie List
+      </Text>
       {error ? (
-        <Text style={styles.error}>{error}</Text>
+        <Text style={HomeScreenStyles.error}>{error}</Text>
       ) : (
         <FlatList
           data={movies}
-          renderItem={({item}) => renderItem(item, navigation)}
+          renderItem={({item}) => Poster(item, navigation)}
           keyExtractor={item => item.id.toString()}
           numColumns={2}
         />
@@ -82,41 +73,5 @@ const HomeScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 100,
-  },
-  header: {
-    fontSize: 24,
-    color: '#bbbbbb',
-  },
-  item: {
-    flex: 1,
-    margin: 5,
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    width: 175,
-    height: 250,
-    marginBottom: 10,
-    borderRadius: 10,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    textAlign: 'center',
-    color: '#cccccc',
-  },
-  error: {
-    color: 'red',
-    textAlign: 'center',
-    marginTop: 20,
-  },
-});
 
 export default HomeScreen;
