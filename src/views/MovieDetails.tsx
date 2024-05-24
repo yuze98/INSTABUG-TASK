@@ -9,6 +9,16 @@ import {
 import {MovieDetailsStyles} from '../styles/MovieDetailsStyles';
 import {BlurView} from '@react-native-community/blur';
 
+/**
+ * Description:
+ * MovieDetails component displays detailed information about a specific movie.
+ * It includes the movie title, description, release date, rating, popularity, and an option to watch the movie.
+ *
+ * Screen:
+ * @param {Object} route - Navigation route containing the movie details.
+ * @returns {JSX.Element} MovieDetails component.
+ */
+
 const MovieDetails = ({route}: {route: any}) => {
   const {item} = route.params;
   const {
@@ -22,6 +32,8 @@ const MovieDetails = ({route}: {route: any}) => {
     imageUri,
   } = item;
 
+  // redirects to the netflix website and could be enhanced to redirect
+  // to the movie if there was a link provided
   const handleWatchNowPress = () => {
     Linking.openURL('https://www.netflix.com'); // Open Netflix website
   };

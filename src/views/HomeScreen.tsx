@@ -8,23 +8,32 @@ import {Movie} from '../utils/types';
 import Poster from '../components/Poster';
 import {HomeScreenStyles} from '../styles/HomeScreenStyles';
 
-const STORAGE_KEY = 'MOVIE_LIST';
-
+/**
+ * Description:
+ * HomeScreen component represents the main screen of the Movie app, displaying a list of movies.
+ * It fetches the movie list from the server Natively using Kotlin and Swift for
+ * both IOS and Android and stores it locally for offline use.
+ *
+ * Screen:
+ * @returns {JSX.Element} HomeScreen component.
+ */
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [movies, setMovies] = useState<Movie[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // Calling the fetching module and sets its state
     const fetchMovieList = async () => {
       const state = await NetInfo.fetch();
-
+      // check if the there is an internet connection
       if (state.isConnected) {
         try {
           const response = await MovieService.getMovieListNative();
+          // sets the response data in both the state and the async storage for future offline use
           setMovies(response.movies);
           await AsyncStorage.setItem(
-            STORAGE_KEY,
+            'MOVIE_LIST',
             JSON.stringify(response.movies),
           );
         } catch (err) {
@@ -33,7 +42,9 @@ const HomeScreen = () => {
         }
       } else {
         Alert.alert('No Internet Connection', 'Displaying stored movies');
-        const storedMovies = await AsyncStorage.getItem(STORAGE_KEY);
+        // if there were no internet connection then it just retrieves the data from
+        // the async storage and adds it to the state if the data exists
+        const storedMovies = await AsyncStorage.getItem('MOVIE_LIST');
         if (storedMovies) {
           setMovies(JSON.parse(storedMovies));
         } else {

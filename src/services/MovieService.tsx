@@ -20,6 +20,7 @@ const MovieService = {
       );
       const responseData = JSON.parse(response);
       console.log('fetched successfully from native function with');
+      // transformMovieList function just transforms the resulted data in to a more useable form of a model
       return {
         movies: transformMovieList(responseData.results),
         currentPage: responseData.page,
